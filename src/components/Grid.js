@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './grid.css';
+import Square from './Square';
 
 const MONTH_LENGTH = new Date(new Date().getFullYear(),new Date().getMonth()+1, 0).getDate();
 const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -7,33 +8,35 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 ];
 
 const Grid = () => {
-  const [monthLength, setMonthLength] = useState(createMonthLength(MONTH_LENGTH));
+  const [gridCells, setGridCells] = useState(createMonthLength(MONTH_LENGTH));
 
   return (
     <div>
       <h1>{monthNames[new Date().getMonth()]}</h1>
       <h2>Days: {MONTH_LENGTH}</h2>
       <div className="container">
-        {monthLength.map((sq, sqIndex) => {
-          return <div key={sqIndex} className="square"></div>;
+        {gridCells.map((row, rowIndex) => {
+          return row.map((cell, cellIndex) => {
+            return <Square key={cellIndex}/>;
+          })
         })}
       </div>
     </div>
   )
 }
 
-
 const createMonthLength = (MONTH_LENGTH) => {
-  let counter = 1;
-  const board = [];
-  for (let row = 0; row < MONTH_LENGTH; row ++) {
-    const currentRow = [];
-    for (let col = 0; col < MONTH_LENGTH; col ++) {
-      currentRow.push(counter++);
-    }
-    board.push(currentRow);
-  }
-  return board;
+  const newArr = new Array(MONTH_LENGTH).fill("empty"); //need to be 1-30
+  const gridCells = chunkArray(newArr, 7);
+  console.log(gridCells);
+  return gridCells;
+}
+
+function chunkArray(array, size) {
+   if(array.length <= size){
+       return [array]
+   }
+   return [array.slice(0,size), ...chunkArray(array.slice(size), size)]
 }
 
 export default Grid;
