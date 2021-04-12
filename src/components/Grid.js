@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './grid.css';
 import Square from './Square';
+import SquareInfo from './SquareInfo';
 
 const MONTH_LENGTH = new Date(new Date().getFullYear(),new Date().getMonth()+1, 0).getDate();
 const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -8,20 +9,28 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 ];
 
 const Grid = () => {
+  console.log(44444444);
   const [gridCells, setGridCells] = useState(createMonthLength(MONTH_LENGTH));
+  const [page, setPage] = useState("MAIN");
 
-  return (
-    <div>
+  let view = (<div>
       <h1>{monthNames[new Date().getMonth()]}</h1>
       <h2>Days: {MONTH_LENGTH}</h2>
       <div className="container">
         {gridCells.map((row, rowIndex) => {
           return row.map((cell, cellIndex) => {
-            return <Square key={cellIndex}/>;
+            return <Square key={cellIndex} clickNotes={setPage}/>;
           })
         })}
       </div>
-    </div>
+  </div>)
+
+  if (page === 'INFO') {
+    view = <SquareInfo/>
+  }
+
+  return (
+    view
   )
 }
 
@@ -40,20 +49,3 @@ function chunkArray(array, size) {
 }
 
 export default Grid;
-
-// return (
-//   <div>
-//     <h1>Month</h1>
-//     <div className="board">
-//       {monthLength.map((row, rowIndex) => (
-//         <div key={rowIndex} className="row">
-//           {row.map((cellValue, cellIndex) => {
-//             return <div key={cellIndex}
-//                     className={cellValue}></div>;
-//           })}
-//         </div>
-//       ))}
-//     </div>
-//   </div>
-// )
-// }

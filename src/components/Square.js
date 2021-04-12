@@ -1,10 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRedirect } from 'react';
 import './square.css';
+import SquareInfo from './SquareInfo';
 
-const Square = () => {
+const Square = ({clickNotes}) => {
 
+  const routes = {
+    './info': () => <SquareInfo/>
+  }
   //const node = useRef();
   const [squareColour, setSquareColour] = useState("black-box");
+  const [page, setPage] = useState("MAIN");
 
   const changeColour = (e) => {
     if (squareColour === "black-box") {
@@ -29,6 +34,12 @@ const Square = () => {
 
   return (
     <div>
+    <button onClick={() => clickNotes("INFO")}>
+      Notes
+    </button>
+    <button onClick={() => clickNotes("MAIN")}>
+        Back
+     </button>
       <div className={squareColour} onClick={changeColour}></div>
     </div>
   )
