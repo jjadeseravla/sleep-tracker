@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import './grid.css';
 
-const MONTH_LENGTH = 30;
+const MONTH_LENGTH = new Date(new Date().getFullYear(),new Date().getMonth()+1, 0).getDate();
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
 export const Grid = () => {
   const [monthLength, setMonthLength] = useState(createMonthLength(MONTH_LENGTH));
+  //const [sqColour, setSqColour] =
 
   return (
     <div>
-      <h1>Month</h1>
+      <h1>{monthNames[new Date().getMonth()]}</h1>
+      <h2>Days: {MONTH_LENGTH}</h2>
       <div className="container">
         {monthLength.map((sq, sqIndex) => {
           return <div key={sqIndex} className="square"></div>;
         })}
       </div>
-      <h2>Days: {MONTH_LENGTH}</h2>
     </div>
   )
 }
