@@ -11,11 +11,12 @@ function SquareInfo() {
     history.push(`/`);
   }
 
-  // const [counter, setCounter] = plusOne(0);
+  // const [date, setCounter] = plusOne(0);
   //
   // const plusOne = (int) => {
   //   setCounter(int + 1);
   // }
+
   return (
     <div>
       <h1>ZE NOTES</h1>

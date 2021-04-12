@@ -37,9 +37,6 @@ const Square = ({clickNotes}) => {
     <button onClick={() => clickNotes("INFO")}>
       Notes
     </button>
-    <button onClick={() => clickNotes("MAIN")}>
-        Back
-     </button>
       <div className={squareColour} onClick={changeColour}></div>
     </div>
   )

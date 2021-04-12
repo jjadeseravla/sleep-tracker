@@ -38,17 +38,33 @@ const Grid = () => {
 }
 
 const createMonthLength = (MONTH_LENGTH) => {
-  const newArr = new Array(MONTH_LENGTH).fill("empty"); //need to be 1-30
+  // const newArr = new Array(MONTH_LENGTH).fill("empty"); //need to be 1-30
+  // const dateCells = newArr.map((i) => {
+  //   return i
+  // })
+  const newArr = getDaysInMonth(new Date().getMonth()+1, new Date().getFullYear());
+  console.log(newArr);
   const gridCells = chunkArray(newArr, 7);
   console.log(gridCells);
   return gridCells;
 }
 
-function chunkArray(array, size) {
-   if(array.length <= size){
+const chunkArray = (array, size) => {
+   if(array.length <= size) {
        return [array]
    }
    return [array.slice(0,size), ...chunkArray(array.slice(size), size)]
 }
+
+const getDaysInMonth = (month, year) => {
+  const date = new Date(year, month, 1);
+  let days = [];
+  while (date.getMonth() === month) {
+    days.push(new Date(date));
+    date.setDate(date.getDate() +1);
+  }
+  return days;
+}
+
 
 export default Grid;
