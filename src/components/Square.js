@@ -8,7 +8,22 @@ const Square = () => {
 
   const changeColour = (e) => {
     if (squareColour === "black-box") {
+      setSquareColour("green-box");
+    }
+    if (squareColour === "green-box") {
+      setSquareColour("lime-box");
+    }
+    if (squareColour === "lime-box") {
+      setSquareColour("yellow-box");
+    }
+    if (squareColour === "yellow-box") {
+      setSquareColour("orange-box");
+    }
+    if (squareColour === "orange-box") {
       setSquareColour("red-box");
+    }
+    if (squareColour === "red-box") {
+      setSquareColour("black-box");
     }
   }
 
