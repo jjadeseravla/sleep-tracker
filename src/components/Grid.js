@@ -8,7 +8,6 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 
 export const Grid = () => {
   const [monthLength, setMonthLength] = useState(createMonthLength(MONTH_LENGTH));
-  //const [sqColour, setSqColour] =
 
   return (
     <div>
