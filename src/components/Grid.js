@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './grid.css';
 import Square from './Square';
 import SquareInfo from './SquareInfo';
+import { useHistory } from "react-router-dom";
 
 const MONTH_LENGTH = new Date(new Date().getFullYear(),new Date().getMonth()+1, 0).getDate();
 const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -9,9 +10,15 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 ];
 
 const Grid = () => {
-  console.log(44444444);
+
+  let history = useHistory();
+  console.log(history);
+
+  function routeChange() {
+    history.push(`/info`);
+  }
+
   const [gridCells, setGridCells] = useState(createMonthLength(MONTH_LENGTH));
-  const [page, setPage] = useState("MAIN");
 
   let view = (<div>
       <h1>{monthNames[new Date().getMonth()]}</h1>
@@ -19,15 +26,11 @@ const Grid = () => {
       <div className="container">
         {gridCells.map((row, rowIndex) => {
           return row.map((cell, cellIndex) => {
-            return <Square key={cellIndex} clickNotes={setPage}/>;
+            return <Square key={cellIndex} clickNotes={routeChange}/>;
           })
         })}
       </div>
   </div>)
-
-  if (page === 'INFO') {
-    view = <SquareInfo/>
-  }
 
   return (
     view

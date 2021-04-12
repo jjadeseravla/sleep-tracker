@@ -1,24 +1,25 @@
 import React, { useState, useRedirect } from 'react';
-//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 //import './squareInfo.css';
 
-const SquareInfo = () => {
+function SquareInfo() {
 
-  // const history = useHistory();
+  let history = useHistory();
+  console.log(history);
+
+  function routeChange() {
+    history.push(`/`);
+  }
+
+  // const [counter, setCounter] = plusOne(0);
   //
-  // const routeChange = () =>{
-  //   let path = `newPath`;
-  //   history.push(path);
-  // }
-
-  //const [counter, setCounter] = plusOne(0);
-
   // const plusOne = (int) => {
   //   setCounter(int + 1);
   // }
   return (
     <div>
-      <h1>TXDFCHGVHJBHJKN</h1>
+      <h1>ZE NOTES</h1>
+      <button onClick={routeChange}>Back</button>
     </div>
   )
 }
