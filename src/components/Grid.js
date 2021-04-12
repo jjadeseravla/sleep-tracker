@@ -6,7 +6,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
-export const Grid = () => {
+const Grid = () => {
   const [monthLength, setMonthLength] = useState(createMonthLength(MONTH_LENGTH));
 
   return (
