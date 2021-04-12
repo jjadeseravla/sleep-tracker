@@ -1,0 +1,13 @@
+.box {
+  background-color: red;
+  padding: 20px;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+/*.box {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background: black;
+}*/
