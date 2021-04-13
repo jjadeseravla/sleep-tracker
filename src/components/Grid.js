@@ -20,28 +20,22 @@ const Grid = () => {
 
   const [gridCells, setGridCells] = useState(createMonthLength(MONTH_LENGTH));
 
-  let view = (<div>
-      <h1>{monthNames[new Date().getMonth()]}</h1>
-      <h2>Days: {MONTH_LENGTH}</h2>
-      <div className="container">
-        {gridCells.map((row, rowIndex) => {
-          return row.map((cell, cellIndex) => {
-            return <Square key={cellIndex} clickNotes={routeChange}/>;
-          })
-        })}
-      </div>
-  </div>)
-
   return (
-    view
+    <div>
+        <h1>{monthNames[new Date().getMonth()]}</h1>
+        <h2>Days: {MONTH_LENGTH}</h2>
+        <div className="container">
+          {gridCells.map((row, rowIndex) => {
+            return row.map((cell, cellIndex) => {
+              return <Square key={cellIndex} clickNotes={routeChange}/>;
+            })
+          })}
+        </div>
+    </div>
   )
 }
 
 const createMonthLength = (MONTH_LENGTH) => {
-  // const newArr = new Array(MONTH_LENGTH).fill("empty"); //need to be 1-30
-  // const dateCells = newArr.map((i) => {
-  //   return i
-  // })
   const newArr = getDaysInMonth(new Date().getMonth()+1, new Date().getFullYear());
   console.log(newArr);
   const gridCells = chunkArray(newArr, 7);
@@ -68,3 +62,5 @@ const getDaysInMonth = (month, year) => {
 
 
 export default Grid;
+
+//the colours disappear when you go to another page
