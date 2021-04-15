@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../UserContext';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import './squareInfo.css';
 
-function SquareInfo() {
+const SquareInfo = () => {
 
   const [formValues, setFormValues] = useState(localStorage.getItem('myFormValueInLocalStorage') || '');
   console.log(1, formValues);
@@ -13,6 +13,8 @@ function SquareInfo() {
   function routeChange() {
     history.push(`/`);
   }
+
+  const { id } = useParams();
 
   const {value, setValue} = useContext(UserContext);
 
@@ -36,6 +38,7 @@ function SquareInfo() {
     <div className="myform">
       <h1>Notes:</h1>
         {value}
+        {id}
         <form action="" method="post" onSubmit={onSubmit}>
           <input type="text" id="notes" name="notes" placeholder="write notes here..."  value={formValues} onChange={onChange}/>
           <h3>Hours asleep?</h3>
