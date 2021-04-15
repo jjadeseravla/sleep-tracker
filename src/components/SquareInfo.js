@@ -1,4 +1,5 @@
-import React, { useState, useRedirect } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserContext } from '../UserContext';
 import { useHistory } from "react-router-dom";
 import './squareInfo.css';
 
@@ -11,9 +12,12 @@ function SquareInfo() {
     history.push(`/`);
   }
 
+  const msg = useContext(UserContext);
+
   return (
     <div className="myform">
       <h1>NOTES</h1>
+        {msg}
         <form action="" method="post">
           <input type="text" id="notes" name="notes" placeholder="write notes here..." value="Notes"/>
           <h3>Hours asleep?</h3>
