@@ -1,11 +1,9 @@
-import React, { useState, useRedirect } from 'react';
+import React, { useState } from 'react';
 import './square.css';
-import SquareInfo from './SquareInfo';
 
 const Square = ({clickNotes, id}) => {
 
   const [squareColour, setSquareColour] = useState("black-box");
-  const [page, setPage] = useState("MAIN");
 
   const changeColour = (e) => {
     if (squareColour === "black-box") {

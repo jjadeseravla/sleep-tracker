@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './grid.css';
 import Square from './Square';
-import SquareInfo from './SquareInfo';
 import { useHistory } from "react-router-dom";
 
 const MONTH_LENGTH = new Date(new Date().getFullYear(),new Date().getMonth()+1, 0).getDate();
