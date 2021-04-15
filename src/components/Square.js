@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-//import SquareInfo from './SquareInfo';
 import './square.css';
 
 const Square = ({clickNotes, id}) => {
 
   const [squareColour, setSquareColour] = useState("black-box");
-
-  // const onSubmit = (formState) => {
-  //   console.log('I will submit my ChildForm Input State: ' + formState);
-  // }
 
   const changeColour = (e) => {
     if (squareColour === "black-box") {
@@ -44,4 +39,3 @@ const Square = ({clickNotes, id}) => {
 }
 
 export default Square;
-// <SquareInfo onSubmit={onSubmit}/>

@@ -3,12 +3,15 @@ import { UserContext } from '../UserContext';
 import { useHistory, useParams } from "react-router-dom";
 import './squareInfo.css';
 
-const SquareInfo = () => {
+const SquareInfo = ({onSubmit}) => {
 
-  const params = useParams();
+   const { id } = useParams();
+  //  console.log(id, formValues);
+  //
+  const [formValues, setFormValues] = useState({ note: '' });
 
-  const [formValues, setFormValues] = useLocalStorage(params.id);
-  console.log(1, formValues);
+  // const [formValues, setFormValues] = useLocalStorage(params.id);
+  // console.log(1, formValues);
 
   let history = useHistory();
 
@@ -52,25 +55,28 @@ const SquareInfo = () => {
   return [storedValue, setValue];
 }
 
-  const onSubmit = (e) => {
-    console.log(4, formValues);
-    e.preventDefault();
-    //function
-    setFormValues(e.target.notes.value)
-  }
-
-  const onChange = (e) => {
-    setFormValues(e.target.value);
-    console.log(3, 'formValues', formValues);
-  };
+  // const onSubmit = (e) => {
+  //   console.log(4, formValues);
+  //   e.preventDefault();
+  //   //function
+  //   setFormValues(e.target.notes.value)
+  // }
 
   return (
     <div className="myform">
       <h1>Notes:</h1>
         <h4>useContext: {value}</h4>
-        <h4>this is the id: {params.id}</h4>
-        <form action="" method="post" onSubmit={onSubmit}>
-          <input type="text" id="notes" name="notes" placeholder="write notes here..."  value={formValues} onChange={onChange}/>
+        <form action="" method="post" onSubmit={(e) => {onSubmit(e, formValues, id)}}>
+          <input
+          type="text"
+          id="notes"
+          name="notes"
+          placeholder="write notes here..."
+          onChange={(e) => {
+            setFormValues({ note: e.target.value});
+            //e.preventDefault();
+          }}
+          value={formValues.note}/>
           <h3>Hours asleep?</h3>
           <input type="number" id="hoursAsleep" name="sleepingHours" step="any"/>
           <h3>Where did you sleep last night?</h3>
