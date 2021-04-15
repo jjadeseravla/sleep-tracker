@@ -7,8 +7,7 @@ const SquareInfo = () => {
 
   const params = useParams();
 
-  //const [formValues, setFormValues] = useState(localStorage.getItem('myFormValueInLocalStorage') || '');
-  const [formValues, setFormValues] = useLocalStorage([params.id]);
+  const [formValues, setFormValues] = useLocalStorage(params.id);
   console.log(1, formValues);
 
   let history = useHistory();
@@ -18,11 +17,6 @@ const SquareInfo = () => {
   }
 
   const {value, setValue} = useContext(UserContext);
-
-  // useEffect(() => { //runs everytime state updates ---> saves to local storage
-  //   window.localStorage.setItem('myFormValueInLocalStorage', formValues);
-  //   console.log(2);
-  // }, [setFormValues])
 
   function useLocalStorage(key, initialValue) {
   // State to store our value
@@ -66,8 +60,8 @@ const SquareInfo = () => {
   }
 
   const onChange = (e) => {
-    console.log(3);
     setFormValues(e.target.value);
+    console.log(3, 'formValues', formValues);
   };
 
   return (
