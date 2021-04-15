@@ -2,7 +2,7 @@ import React, { useState, useRedirect } from 'react';
 import './square.css';
 import SquareInfo from './SquareInfo';
 
-const Square = ({clickNotes}) => {
+const Square = ({clickNotes, id}) => {
 
   const routes = {
     './info': () => <SquareInfo/>
@@ -35,7 +35,7 @@ const Square = ({clickNotes}) => {
   return (
     <div>
     <button onClick={() => clickNotes("INFO")}>
-      Notes
+      {id}
     </button>
       <div className={squareColour} onClick={changeColour}></div>
     </div>

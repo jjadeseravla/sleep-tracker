@@ -12,7 +12,6 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 const Grid = () => {
 
   let history = useHistory();
-  console.log(history);
 
   function routeChange() {
     history.push(`/info`);
@@ -27,7 +26,8 @@ const Grid = () => {
         <div className="container">
           {gridCells.map((row, rowIndex) => {
             return row.map((cell, cellIndex) => {
-              return <Square key={cellIndex} clickNotes={routeChange}/>;
+              console.log('cell', cell);
+              return <Square key={cellIndex} clickNotes={routeChange} id={cell}/>;
             })
           })}
         </div>
@@ -37,9 +37,10 @@ const Grid = () => {
 
 const createMonthLength = (MONTH_LENGTH) => {
   const newArr = getDaysInMonth(new Date().getMonth()+1, new Date().getFullYear());
-  console.log(newArr);
   const gridCells = chunkArray(newArr, 7);
-  console.log(gridCells);
+  //console.log(gridCells);
+   //console.log('gridCells[0][0]', gridCells[0][0], 'gridCells', gridCells); //saying today is may 1?!
+  // console.log("date", new Date().getDate() +1 ); //todays date
   return gridCells;
 }
 
@@ -50,15 +51,32 @@ const chunkArray = (array, size) => {
    return [array.slice(0,size), ...chunkArray(array.slice(size), size)]
 }
 
+//const getDaysInMonth = (month, year) => {
+  //const date = new Date(year, month, 1);
+  //let days = []; //arr of Objects
+  // while (date.getMonth() === month) {
+  //   days = [...days,   {
+  //       "theDate": new Date(date),
+  //       "id": (new Date(date)).toISOString()
+  //     }]
+
+    // days.push(
+    //   {
+    //     "theDate": new Date(date),
+    //     "id": (new Date(date)).toISOString()
+    //   }
+    // );  do a for loop of each month and populate array 1-30 etc
+   //date.setDate(date.getDate() +1);
+//   }
+//   return days;
+// }
+
 const getDaysInMonth = (month, year) => {
-  const date = new Date(year, month, 1);
-  let days = [];
-  while (date.getMonth() === month) {
-    days.push(new Date(date));
-    date.setDate(date.getDate() +1);
-  }
-  return days;
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const daysArr = [...Array(daysInMonth).keys()].map((x) => ++x); //[1, 2, 3, ..] ++ infront of x so it doesnt return x before its plusd it
+  return daysArr;
 }
+
 
 
 export default Grid;
