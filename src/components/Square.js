@@ -4,10 +4,6 @@ import SquareInfo from './SquareInfo';
 
 const Square = ({clickNotes, id}) => {
 
-  const routes = {
-    './info': () => <SquareInfo/>
-  }
-  //const node = useRef();
   const [squareColour, setSquareColour] = useState("black-box");
   const [page, setPage] = useState("MAIN");
 
@@ -34,7 +30,9 @@ const Square = ({clickNotes, id}) => {
 
   return (
     <div>
-    <button onClick={() => clickNotes("INFO")}>
+    <button onClick={() => {
+      clickNotes(id)}
+    }>
       {id}
     </button>
       <div className={squareColour} onClick={changeColour}></div>

@@ -13,8 +13,8 @@ const Grid = () => {
 
   let history = useHistory();
 
-  function routeChange() {
-    history.push(`/info`);
+  function routeChange(id) {
+    history.push(`/info/${id}`);
   }
 
   const [gridCells, setGridCells] = useState(createMonthLength(MONTH_LENGTH));
@@ -26,7 +26,6 @@ const Grid = () => {
         <div className="container">
           {gridCells.map((row, rowIndex) => {
             return row.map((cell, cellIndex) => {
-              console.log('cell', cell);
               return <Square key={cellIndex} clickNotes={routeChange} id={cell}/>;
             })
           })}
@@ -38,9 +37,6 @@ const Grid = () => {
 const createMonthLength = (MONTH_LENGTH) => {
   const newArr = getDaysInMonth(new Date().getMonth()+1, new Date().getFullYear());
   const gridCells = chunkArray(newArr, 7);
-  //console.log(gridCells);
-   //console.log('gridCells[0][0]', gridCells[0][0], 'gridCells', gridCells); //saying today is may 1?!
-  // console.log("date", new Date().getDate() +1 ); //todays date
   return gridCells;
 }
 
@@ -50,26 +46,6 @@ const chunkArray = (array, size) => {
    }
    return [array.slice(0,size), ...chunkArray(array.slice(size), size)]
 }
-
-//const getDaysInMonth = (month, year) => {
-  //const date = new Date(year, month, 1);
-  //let days = []; //arr of Objects
-  // while (date.getMonth() === month) {
-  //   days = [...days,   {
-  //       "theDate": new Date(date),
-  //       "id": (new Date(date)).toISOString()
-  //     }]
-
-    // days.push(
-    //   {
-    //     "theDate": new Date(date),
-    //     "id": (new Date(date)).toISOString()
-    //   }
-    // );  do a for loop of each month and populate array 1-30 etc
-   //date.setDate(date.getDate() +1);
-//   }
-//   return days;
-// }
 
 const getDaysInMonth = (month, year) => {
   const daysInMonth = new Date(year, month, 0).getDate();
