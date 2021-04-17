@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 
  const Grid = ({monthLength, gridCells}) => {
 
-console.log('gridCells', gridCells)
+//console.log('gridCells', gridCells)
   let history = useHistory();
 
   function routeChange(id) {
