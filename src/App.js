@@ -29,41 +29,33 @@ const chunkArray = (array, size) => {
 const getDaysInMonth = (month, year) => {
   const daysInMonth = new Date(year, month, 0).getDate();
   const daysArr = [...Array(daysInMonth).keys()];
-  //console.log("daysArr", daysArr);
   const result = daysArr.map((x) => {
-    return { day: ++x }
+    return { day: ++x } //, note: ''
   }); //[1, 2, 3, ..] ++ infront of x so it doesnt return x before its plusd it
-  // console.log("result", result);
+  console.log(result);
   return result;
 }
 
 function App() {
 
   const [gridCells, setGridCells] = useState(createMonthLength(MONTH_LENGTH));
-// console.log('---------------', gridCells)
 
   const onSubmit = (e, formState, id) => {
-      // console.log(4, formState, id);
        e.preventDefault();
-       // update cell value with new infor
-      //function
-       //setFormValues(e.target.notes.value)
+       // update cell value with new info
        updateSquare(id, formState)
-    //console.log('I will submit my ChildForm Input State: ' + formState);
   }
 
   const updateSquare = (id, formState) => {
-    // console.log(gridCells);
     const newState = gridCells.map((row) => {
       return row.map((cell) => {
         if (String(cell.day) === id) {
-          console.log('---------------');
           return {...cell, note: formState.note} //copy whats in there already and add note
         }
         return cell;
       })
     })
-    //console.log(newState);
+    console.log(newState);
     setGridCells(newState);
   }
 
@@ -90,3 +82,5 @@ function App() {
 }
 
 export default App;
+
+//note is updated on onSubmit, but how to get new state (eg gridCells) to rerender and update

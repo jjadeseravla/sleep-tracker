@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './square.css';
 
-const Square = ({clickNotes, id}) => {
+const Square = ({clickNotes, cell}) => {
 
   const [squareColour, setSquareColour] = useState("black-box");
 
@@ -26,12 +26,16 @@ const Square = ({clickNotes, id}) => {
     }
   }
 
+
+  const noteToDisplay = cell.note ? cell.note : ''; // or render {note}
+
   return (
     <div>
     <button onClick={() => {
-      clickNotes(id)}
+      clickNotes(cell.day)}
     }>
-      {id}
+      {cell.day}
+      {noteToDisplay}
     </button>
       <div className={squareColour} onClick={changeColour}></div>
     </div>
