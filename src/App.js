@@ -40,9 +40,11 @@ function App() {
 
   const [gridCells, setGridCells] = useState(createMonthLength(MONTH_LENGTH));
 
-  const onSubmit = (e, formState, id) => {
+  const onSubmit = (e,formState, id) => {
        e.preventDefault();
        // update cell value with new info
+       console.log('id', id);
+       console.log('formState', formState);
        updateSquare(id, formState)
   }
 
@@ -50,12 +52,12 @@ function App() {
     const newState = gridCells.map((row) => {
       return row.map((cell) => {
         if (String(cell.day) === id) {
-          return {...cell, note: formState.note} //copy whats in there already and add note
+          return {...cell, note: formState.note, hours: formState.hours} //copy whats in there already and add note
         }
         return cell;
       })
     })
-    console.log(newState);
+    console.log('newState', newState);
     setGridCells(newState);
   }
 
@@ -82,5 +84,3 @@ function App() {
 }
 
 export default App;
-
-//note is updated on onSubmit, but how to get new state (eg gridCells) to rerender and update

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './grid.css';
 import Square from './Square';
 import { useHistory } from "react-router-dom";

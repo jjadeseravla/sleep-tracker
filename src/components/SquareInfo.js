@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { UserContext } from '../UserContext';
 import { useHistory, useParams } from "react-router-dom";
 import './squareInfo.css';
@@ -7,7 +7,7 @@ const SquareInfo = ({onSubmit}) => {
 
    const { id } = useParams();
 
-  const [formValues, setFormValues] = useState({ note: '' });
+  const [formValues, setFormValues] = useState({ note: '' , hours: 0});
 
   let history = useHistory();
 
@@ -15,7 +15,7 @@ const SquareInfo = ({onSubmit}) => {
     history.push(`/`);
   }
 
-  const {value, setValue} = useContext(UserContext);
+  const {ovalue, setOvalue} = useContext(UserContext);
 
 //   function useLocalStorage(key, initialValue) {
 //   // State to store our value
@@ -51,23 +51,37 @@ const SquareInfo = ({onSubmit}) => {
 //   return [storedValue, setValue];
 // }
 
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setFormValues(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
   return (
     <div className="myform">
       <h1>Notes:</h1>
-        <h4>useContext: {value}</h4>
+        <h4>useContext: {ovalue}</h4>
         <form action="" method="post" onSubmit={(e) => {onSubmit(e, formValues, id)}}>
           <input
+          value={formValues.note}
           type="text"
-          id="notes"
-          name="notes"
+          id="note"
+          name="note"
           placeholder="write notes here..."
-          onChange={(e) => {
-            setFormValues({ note: e.target.value});
-            //e.preventDefault();
-          }}
+          onChange={handleChange}
           value={formValues.note}/>
+
           <h3>Hours asleep?</h3>
-          <input type="number" id="hoursAsleep" name="sleepingHours" step="any"/>
+          <input
+          value={formValues.hours}
+          type="text"
+          id="hours"
+          name="hours"
+          step="any"
+          onChange={handleChange}/>
+
           <h3>Where did you sleep last night?</h3>
             <ul>
               <li><input type="radio" name="bed" value="bed1" /> 31 Kirkstall Gardens</li>

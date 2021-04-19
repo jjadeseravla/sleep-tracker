@@ -28,14 +28,16 @@ const Square = ({clickNotes, cell}) => {
 
 
   const noteToDisplay = cell.note ? cell.note : ''; // or render {note}
+  const hoursAsleep = cell.hours ? cell.hours : 0;
 
   return (
     <div>
     <button onClick={() => {
       clickNotes(cell.day)}
     }>
-      {cell.day}
+      Day: {cell.day}
       {noteToDisplay}
+      hours asleep: {hoursAsleep}
     </button>
       <div className={squareColour} onClick={changeColour}></div>
     </div>
