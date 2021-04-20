@@ -32,7 +32,7 @@ const getDaysInMonth = (month, year) => {
   const result = daysArr.map((x) => {
     return { day: ++x } //, note: ''
   }); //[1, 2, 3, ..] ++ infront of x so it doesnt return x before its plusd it
-  console.log(result);
+  // console.log(result);
   return result;
 }
 
@@ -52,12 +52,12 @@ function App() {
     const newState = gridCells.map((row) => {
       return row.map((cell) => {
         if (String(cell.day) === id) {
-          return {...cell, note: formState.note, hours: formState.hours} //copy whats in there already and add note
+          return {...cell, note: formState.note, hours: formState.hours, wee: formState.wee} //copy whats in there already and add note
         }
         return cell;
       })
     })
-    console.log('newState', newState);
+    // console.log('newState', newState);
     setGridCells(newState);
   }
 

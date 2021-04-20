@@ -29,6 +29,7 @@ const Square = ({clickNotes, cell}) => {
 
   const noteToDisplay = cell.note ? cell.note : ''; // or render {note}
   const hoursAsleep = cell.hours ? cell.hours : 0;
+  const toilet = cell.wee ? cell.wee : 0;
 
   return (
     <div>
@@ -38,6 +39,7 @@ const Square = ({clickNotes, cell}) => {
       Day: {cell.day}
       {noteToDisplay}
       hours asleep: {hoursAsleep}
+      woke up to wee: {toilet}
     </button>
       <div className={squareColour} onClick={changeColour}></div>
     </div>
