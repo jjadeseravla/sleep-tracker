@@ -7,12 +7,13 @@ import { useHistory } from "react-router-dom";
    "July", "August", "September", "October", "November", "December"
  ];
 
- const Grid = ({monthLength, gridCells, squareColour, changeColour}) => {
+ const Grid = ({monthLength, gridCells, changeColour}) => {
 
   let history = useHistory();
 
   function routeChange(id) {
     history.push(`/info/${id}`);
+    console.log('here');
   }
 
   return (
@@ -22,7 +23,8 @@ import { useHistory } from "react-router-dom";
         <div className="container">
           {gridCells.map((row, rowIndex) => {
             return row.map((cell, cellIndex) => {
-              return <Square key={cellIndex} clickNotes={routeChange} cell={cell} squareColour={squareColour} changeColour={changeColour}/>;
+              {console.log(cell.colour)}
+              return <Square key={cellIndex} clickNotes={routeChange} cell={cell} changeColour={changeColour}/>;
             })
           })}
         </div>

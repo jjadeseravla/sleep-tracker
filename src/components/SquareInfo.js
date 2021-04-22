@@ -7,7 +7,7 @@ const SquareInfo = ({onSubmit}) => {
 
    const { id } = useParams();
 
-  const [formValues, setFormValues] = useState({ note: '' , hours: 0, wee: 0 });
+  const [formValues, setFormValues] = useState({ note: '' , hours: 0, wee: 0});
 
   let history = useHistory();
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './square.css';
 
-const Square = ({clickNotes, cell, squareColour, changeColour}) => {
+const Square = ({clickNotes, cell, changeColour}) => {
 
   // const [squareColour, setSquareColour] = useState("black-box");
 
@@ -35,6 +35,7 @@ const Square = ({clickNotes, cell, squareColour, changeColour}) => {
   const noteToDisplay = cell.note ? cell.note : ''; // or render {note}
   const hoursAsleep = cell.hours ? cell.hours : 0;
   const toilet = cell.wee ? cell.wee : 0;
+  //const colour = cell.colour ? '' : "black-box";
 
   return (
     <div>
@@ -47,7 +48,7 @@ const Square = ({clickNotes, cell, squareColour, changeColour}) => {
         woke up to wee: {toilet}
       </button>
 
-        <div className={squareColour} onClick={changeColour}></div>
+        <div className={cell.colour} onClick={() => changeColour(cell.day)}></div>
 
     </div>
   )
