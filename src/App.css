@@ -1,3 +1,64 @@
+.black-box {
+  background-color: black;
+  padding: 20px;
+  color: #fff;
+  border: 1px solid #fff;
+  width: 50px;
+  height: 50px;
+}
+
+.red-box {
+  background-color: red;
+  padding: 20px;
+  color: #fff;
+  border: 1px solid #fff;
+  width: 50px;
+  height: 50px;
+}
+.orange-box {
+  background-color: 	#FF8C00;
+  padding: 20px;
+  color: #fff;
+  border: 1px solid #fff;
+  width: 50px;
+  height: 50px;
+}
+
+.yellow-box {
+  background-color: yellow;
+  padding: 20px;
+  color: #fff;
+  border: 1px solid #fff;
+  width: 50px;
+  height: 50px;
+}
+
+.lime-box {
+  background-color: #9acd32;
+  padding: 20px;
+  color: #fff;
+  border: 1px solid #fff;
+  width: 50px;
+  height: 50px;
+}
+
+.green-box {
+  background-color: green;
+  padding: 20px;
+  color: #fff;
+  border: 1px solid #fff;
+  width: 50px;
+  height: 50px;
+}
+
+/*.box {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background: black;
+}*/
+
+
 .App {
   text-align: center;
 }

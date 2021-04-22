@@ -1,30 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './square.css';
 
-const Square = ({clickNotes, cell}) => {
+const Square = ({clickNotes, cell, squareColour, changeColour}) => {
 
-  const [squareColour, setSquareColour] = useState("black-box");
+  // const [squareColour, setSquareColour] = useState("black-box");
 
-  const changeColour = (e) => {
-    if (squareColour === "black-box") {
-      setSquareColour("green-box");
-    }
-    if (squareColour === "green-box") {
-      setSquareColour("lime-box");
-    }
-    if (squareColour === "lime-box") {
-      setSquareColour("yellow-box");
-    }
-    if (squareColour === "yellow-box") {
-      setSquareColour("orange-box");
-    }
-    if (squareColour === "orange-box") {
-      setSquareColour("red-box");
-    }
-    if (squareColour === "red-box") {
-      setSquareColour("black-box");
-    }
-  }
+
+    // const changeColour = (e) => {
+    //   const colourArr = [
+    //     "black-box",
+    //     "green-box",
+    //     "lime-box",
+    //     "yellow-box",
+    //     "orange-box",
+    //     "red-box"
+    //   ]
+    //   colourArr.map((colour, index) => {
+    //     if (squareColour === colour) {
+    //       setSquareColour(colourArr[index + 1]);
+    //     }
+    //   })
+    //         console.log();
+
+      // for (var i = 0; i < colourArr.length; i++) {
+      //   console.log(colourArr);
+      //   if (squareColour === colourArr[i]) {
+      //     setSquareColour(colourArr[i])
+      //   }
+      // }
+
+  //   }
 
 
   const noteToDisplay = cell.note ? cell.note : ''; // or render {note}
@@ -33,17 +38,20 @@ const Square = ({clickNotes, cell}) => {
 
   return (
     <div>
-    <button onClick={() => {
-      clickNotes(cell.day)}
-    }>
-      Day: {cell.day}
-      {noteToDisplay}
-      hours asleep: {hoursAsleep}
-      woke up to wee: {toilet}
-    </button>
-      <div className={squareColour} onClick={changeColour}></div>
+      <button onClick={() => {
+        clickNotes(cell.day)}
+      }>
+        Day: {cell.day}
+        {noteToDisplay}
+        hours asleep: {hoursAsleep}
+        woke up to wee: {toilet}
+      </button>
+
+        <div className={squareColour} onClick={changeColour}></div>
+
     </div>
   )
 }
+
 
 export default Square;

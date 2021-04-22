@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from './components/Grid.js';
 import './App.css';
 import { BrowserRouter as Router,
@@ -39,6 +39,42 @@ const getDaysInMonth = (month, year) => {
 function App() {
 
   const [gridCells, setGridCells] = useState(createMonthLength(MONTH_LENGTH));
+  const [squareColour, setSquareColour] = useState("black-box");
+
+  const changeColour = (e) => {
+    if (squareColour === "black-box") {
+      setSquareColour("green-box");
+    }
+    if (squareColour === "green-box") {
+      setSquareColour("lime-box");
+    }
+    if (squareColour === "lime-box") {
+      setSquareColour("yellow-box");
+    }
+    if (squareColour === "yellow-box") {
+      setSquareColour("orange-box");
+    }
+    if (squareColour === "orange-box") {
+      setSquareColour("red-box");
+    }
+    if (squareColour === "red-box") {
+      setSquareColour("black-box");
+    }
+  }
+
+  //runs every time it renders
+  useEffect(() => {
+    const data = localStorage.getItem('ble');
+    console.log('*******************************************');
+    if (data) {
+      setSquareColour(data);
+    }
+  }, [])
+
+
+  useEffect(() => {
+    localStorage.setItem("ble", squareColour);
+  })
 
   const onSubmit = (e,formState, id) => {
        e.preventDefault();
@@ -61,6 +97,19 @@ function App() {
     setGridCells(newState);
   }
 
+  useEffect(() => {
+    const data = localStorage.getItem('gridCells');
+    console.log('*******************************************');
+    if (data) {
+      setGridCells(JSON.parse(data));
+    }
+  }, [])
+
+
+  useEffect(() => {
+    localStorage.setItem("gridCells", JSON.stringify(gridCells));
+  })
+
   const [value, setValue] = useState('hello from cccccontext');
 
   return (
@@ -70,10 +119,10 @@ function App() {
           <UserContext.Provider value={{value, setValue}}>
             <Switch>
               <Route path='/info/:id'>
-                <SquareInfo onSubmit={onSubmit}/>
+                <SquareInfo squareColour={squareColour} onSubmit={onSubmit}/>
               </Route>
               <Route path='/'>
-                <Grid monthLength={MONTH_LENGTH} gridCells={gridCells}/>
+                <Grid monthLength={MONTH_LENGTH} gridCells={gridCells} squareColour={squareColour} changeColour={changeColour}/>
               </Route>
             </Switch>
           </UserContext.Provider>
